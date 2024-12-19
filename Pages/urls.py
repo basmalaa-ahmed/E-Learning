@@ -16,7 +16,7 @@ urlpatterns = [
     # path('', auth_views.LoginView.as_view(), name='login'),
     # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('logout/', views.custom_logout, name='logout'),
-    path('signup/', views.signup_view, name='signup'),  # Define a URL pattern with name='signup'
-
+    # path('signup/', views.signup_view, name='signup'),  # Define a URL pattern with name='signup'
+path('signup/', views.signup_view, name='signup'),
 
 ]

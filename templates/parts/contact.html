@@ -1,2 +1,71 @@
-{%load static%}
+{% extends "parts/mainTemplate.html" %}
+{% load static %}
+{% block content %}
+<section id="courses-text" class="text-center text-white" style="height: 60vh;">
+    <div class="container">
+        <h2 class="text-white display-4 mb-5">Contact Us</h2>
+    </div>
+</section>
 
+<section id="contact">
+    <div class="container">
+        <div class="row mt-5 text-center">
+            <div class="col-md-4 col-sm-12">
+                <i class="bi bi-geo-alt-fill pe-4"></i>
+                <h6>Our Location</h6>
+                <p>122 AL-Tahrir Cinema, Dokki.</p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <i class="bi bi-telephone-fill pe-4"></i>
+                <h6>Call Us</h6>
+                <p>+20 15 52433078</p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <i class="bi bi-envelope-fill pe-4"></i>
+                <h6>Email Us</h6>
+                <p>codechefs0@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="row bg-white p-5">
+            <div class="col-sm-12">
+                <h3 class="text-center">Leave a Message</h3>
+                <p class="text-center">Your email address will not be published. Required fields are marked.</p>
+                <form class="py-3">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 py-2">
+                            <label for="name">Name <span class="validate">*</span></label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 col-sm-12 py-2">
+                            <label for="email">Email <span class="validate">*</span></label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 col-sm-12 py-2">
+                            <label for="subject">Subject <span class="validate">*</span></label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="col-md-12 py-3">
+                            <label for="message">Message <span class="validate">*</span></label>
+                            <textarea name="message" id="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        <div class="col-md-12 text-center py-3" id="btns-contact">
+                            <a href="#" class="start">Send Message</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="courses-end">
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+        <h1 class="text-white text-center display-4 mb-5">All Access Membership</h1>
+        <p class="lead mb-5 text-white">
+            "Unlock your potential today—start enrolling in our expert-led courses and take the first step towards mastering new skills!".
+        </p>
+        <button id="subscribe-button" type="submit" class="btn center">Subscribe and Save</button>
+    </div>
+</section>
+{% endblock content %}

@@ -5,7 +5,7 @@
     background-repeat: no-repeat; 
     background-size: cover;
     background-position: center;
-    height: 85vh;
+    height: 90vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -14,7 +14,7 @@
 }
 .feature-icon {
     font-size: 3rem;
-    color: #007bff;
+    color:#03076f;
 }
 .team-member img {
     width: 100%;
@@ -23,7 +23,18 @@
 }
 #get-in-touch{
     border-radius: 50px;
-    border: none
+    border: none;
+    background-color: #fff;
+    transition: all 0.6s;
+    padding: 14px 24px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 15px;
   }
   #get-in-touch:hover{
       background-color: #ff9f00;
@@ -33,23 +44,36 @@
   #signup-button{
     border-radius: 50px;
     border: none;
-    background-color: #1579e6;
+    background-color: #03076f;
     color: white;
 }
     #signup-button:hover{
         background-color: #ff9f00;
-        color: black;
+        color: #fff;
     }
 /* login page */
 #login-button{
     border-radius: 50px;
     border: none;
-    background-color: #1579e6;
+    background-color: #03076f;
     color: white;
 }
     #login-button:hover{
         background-color: #ff9f00;
-        color: black;
+        color: #fff;
+    }
+    #loginSec p{
+        color: #03076f !important;
+    }
+    #loginSec .form-control{
+        border-radius: 5px;
+        height: 52px;
+    }
+    #loginSec{
+        border-radius: 2px;
+    }
+    #loginSec h2{
+        color: #03076f;
     }
 /* course-list page */
 #section-title {
@@ -78,19 +102,19 @@
 #course-button{
     border-radius: 50px;
     border: none;
-    background-color: #1579e6;
+    background-color: #03076f;
     color: white;
 }
 #course-button:hover{
         background-color: #ff9f00;
-        color: black;
+        color: #fff;
 }
 #courses-end{
     background-image: url("/static/img/end-img.svg");
     background-repeat: no-repeat; 
     background-size: cover;
     background-position: center;
-    height: 85vh;
+    height: 65vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -101,9 +125,10 @@
     border-radius: 50px;
     border: none;
     background-color: white;
-    color: black;
+    color: #03076f;
     padding: 15px 25px;
     font-weight: bold;
+    transition: all 0.6s;
 }
 #subscribe-button:hover{
         background-color: #ff9f00;
@@ -510,12 +535,74 @@
     border-color: var(--primary);
 }
 
+/* contact Sec */
+#contacto{
+    background-image: url('../img/background.svg');
+    height: 88vh;
+    background-position: center center;
+    background-size: cover;
+}
+#contact label, #loginSec label{
+    font-size: 18px;
+    line-height: 33px;
+    font-weight: 700;
+    color: 
+    rgb(87, 97, 104);
+}
+#contact label span{
+    color: 
+    rgb(255, 0, 0);
+ }
+ #contact .form-control{
+    border-radius: 8px !important;
+    height: 52px;
+ }
+ #contact textarea{
+    height: 120px !important;
+ }
+ #btns-contact .start{
+    background-color: #03076f;
+    padding: 14px 24px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 15px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 15px;
+    transition: all 0.6s;
+    
+}
+#btns-contact .start:hover{
+    background-color: #ff9f00;
+    color: #fff;
+}
+#contact h6{
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 600;
+    color: 
+    rgb(3, 0, 0);
+}
+#contact p{
+    font-size: 18px;
+    line-height: 33px;
+    font-weight: 500;
+    color: 
+    rgb(0, 0, 0);
+}
+#contact i{
+    font-size: 30px;
+    color: #ff9f00;
+}
 
 
 /* Home Sec */
 #homeSec{
     background-image: url('../img/background.svg');
-    height: 87.3vh;
+    height: 88vh;
     background-position: center center;
     background-size: cover;
 }
