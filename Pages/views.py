@@ -16,7 +16,7 @@ def index (request):
 def about (request):
     return  render(request,'pages/about.html')
 def courses (request):
-    return  render(request,'parts/courses.html')
+    return  render(request,'courses/course_list.html')
 def contact (request):
     return  render(request,'parts/contact.html')
 
