@@ -1,0 +1,27 @@
+
+{% extends "parts/mainTemplate.html" %}
+
+{% block content %}
+
+<div class="container-fluid bg-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s" style="visibility: hidden; animation-delay: 0.1s; animation-name: none; ">
+    <div class="container text-center">
+
+
+        <h2>Login</h2>
+<form method="POST">
+    
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary py-3 px-lg-5 d-none d-lg-block container text-center col-sm-3 ">Login</button>
+</form>
+
+<p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+
+{% if next %}
+<p>Redirected from <strong>{{ next }}</strong></p>
+{% endif %}
+
+</div>
+</div>
+{% endblock content %}
+

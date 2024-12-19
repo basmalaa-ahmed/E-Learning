@@ -1,0 +1,15 @@
+<!-- templates/entry_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entry Form</title>
+</head>
+<body>
+    <h1>Submit an Entry</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

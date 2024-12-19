@@ -1,0 +1,27 @@
+{% load static %}
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg  navbar-light shadow sticky-top p-0 ">
+   <div class="container">
+    <a href="{% url "index" %}" class="navbar-brand d-flex align-items-center">
+        
+        <img class="img-fluid" 
+             src="{% static "img/logo.png" %}" alt="" style="width:85px;">
+   
+</a>
+<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav ms-auto  p-lg-0">
+        <a href="{% url "index" %}" class="nav-item nav-link active">Home</a>
+        <a href="..//courses" class="nav-item nav-link">Courses</a>
+        <a href="{% url "about" %}" class="nav-item nav-link"> About</a>
+        <a href="{% url "contact" %}" class="nav-item nav-link">Contact</a>
+       <div class="btn">
+        <a href="{% url 'login' %}" class=" login">Start Learning</a>
+       </div>
+    </div>
+</div>
+   </div>
+</nav>
+<!-- Navbar End -->

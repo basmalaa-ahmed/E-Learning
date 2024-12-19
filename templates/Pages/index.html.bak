@@ -1,0 +1,10 @@
+
+{% extends "parts/mainTemplate.html" %}
+
+{% block content %}
+{% comment %} <h1>AAAAAAAAAAAAAAAAAAA</h1> {% endcomment %}
+{% include "parts/mainPage.html" %}
+
+{% comment %} {% include "parts/courses.html" %} {% endcomment %}
+
+{% endblock content %}

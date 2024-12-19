@@ -1,0 +1,32 @@
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from .forms import LoginForm
+
+
+# Create your views here.
+def index (request):
+    # return HttpResponse('AAAAAAAAAAAAAAAA')
+    x={'name':'AbdAllah Saad Mahmoud Ahmed','age': ''}
+    return  render(request,'pages/index.html', x)
+
+def about (request):
+    return  render(request,'pages/about.html')
+
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)  # Authenticate user
+            if user is not None:
+                login(request, user)  # Log in the user
+                return redirect('home')  # Replace 'home' with your homepage URL name
+            else:
+                return render(request, 'login.html', {'form': form, 'error': 'Invalid credentials'})
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
