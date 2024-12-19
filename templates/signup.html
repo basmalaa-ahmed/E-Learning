@@ -1,31 +1,44 @@
-
-
-
-
-
 {% extends "parts/mainTemplate.html" %}
 
 {% block content %}
 
-<div class="container-fluid bg-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s" style="visibility: hidden; animation-delay: 0.1s; animation-name: none; ">
-    <div class="container text-center">
+<div class="container d-flex justify-content-center align-items-center mt-4 mb-4">
+    <form class="card shadow-lg w-100" style="max-width: 400px;">
+        <div class="card-body">
+            <h2 class="text-center mb-4">Register</h2>
 
+            <!-- Full Name Field -->
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+            </div>
 
-        <h2>Register </h2>
-<form method="POST">
-    
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary py-3 px-lg-5 d-none d-lg-block container text-center col-sm-3 ">Register</button>
-</form>
+            <!-- Email Field -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
 
-<p>Login? <a href="{% url 'login' %}">LogMeIn</a></p>
+            <!-- Password Field -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+            </div>
 
-{% if next %}
-<p>Redirected from <strong>{{ next }}</strong></p>
-{% endif %}
+            <!-- Confirm Password Field -->
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+            </div>
 
-</div>
+            <!-- Submit Button -->
+            <button id="signup-button" type="submit" class="btn w-100 px-4">Register</button>
+
+            <div class="text-center mt-3">
+                <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock content %}
 
