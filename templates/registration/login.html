@@ -1,27 +1,30 @@
-
 {% extends "parts/mainTemplate.html" %}
-
 {% block content %}
 
-<div class="container-fluid bg-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s" style="visibility: hidden; animation-delay: 0.1s; animation-name: none; ">
-    <div class="container text-center">
+<div class="container d-flex justify-content-center align-items-center mt-4 mb-4">
+    <form class="card shadow-lg w-100" style="max-width: 400px;">
+        <div class="card-body">
+            <h2 class="text-center mb-4">Login</h2>
 
+            <!-- Email Field -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
 
-        <h2>Login</h2>
-<form method="POST">
-    
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary py-3 px-lg-5 d-none d-lg-block container text-center col-sm-3 ">Login</button>
-</form>
+            <!-- Password Field -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+            </div>
 
-<p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+            <!-- Submit Button -->
+            <button id="login-button" type="submit" class="btn btn-primary w-100">Login</button>
 
-{% if next %}
-<p>Redirected from <strong>{{ next }}</strong></p>
-{% endif %}
-
+            <p class="mt-3 text-center">Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+        </div>
+    </form>
 </div>
-</div>
+
 {% endblock content %}
 
