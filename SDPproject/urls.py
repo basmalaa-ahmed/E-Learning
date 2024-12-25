@@ -14,11 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path,include
-from django.contrib.auth import views as auth_views  # Importing auth_views here
-from django.conf import settings
-from django.conf.urls.static import static
+from django.contrib import admin # type: ignore
+from django.urls import path,include # type: ignore
+from django.contrib.auth import views as auth_views  # type: ignore # Importing auth_views here
+from django.conf import settings # type: ignore
+from django.conf.urls.static import static # type: ignore
+from django.urls import path # type: ignore
+# from .views import LoginView, RegisterView  # type: ignore # تأكد من أنك تستخدم نفس المسار الذي يحتوي على الفيوهات
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,8 +36,10 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     # Logout URL
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    #  path('api/register/', RegisterView.as_view(), name='register'),
+    # path('api/login/', LoginView.as_view(), name='login'),
 
 
 ]
 if settings.DEBUG:  # Only serve media files during development
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # type: ignore

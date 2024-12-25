@@ -1,9 +1,10 @@
 {% extends "parts/mainTemplate.html" %}
+
 {% block content %}
 
 <section id="loginSec">
     <div class="container d-flex justify-content-center align-items-center mt-4 mb-4">
-        <form method="post" action="{% url 'login' %}" class="card shadow-lg w-100" style="max-width: 400px;">
+        <form id="loginForm" class="card shadow-lg w-100" style="max-width: 400px;" action=""{% url 'login' %}"">
             {% csrf_token %}
             <div class="card-body">
                 <h2 class="text-center mb-4">Login</h2>
@@ -19,15 +20,9 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                 </div>
-    
-                <!-- Error Messages -->
-                {% if messages %}
-                    <div class="alert alert-danger">
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
+
+                <!-- Error Message -->
+                <div id="error-message" class="alert alert-danger d-none"></div>
     
                 <!-- Submit Button -->
                 <button id="login-button" type="submit" class="btn btn-primary w-100">Login</button>
@@ -37,5 +32,63 @@
         </form>
     </div>
 </section>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get the username and password values
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // Check if the fields are empty
+        if (!username || !password) {
+            document.getElementById('error-message').textContent = 'Both fields are required';
+            document.getElementById('error-message').classList.remove('d-none');
+            return;  // Stop form submission
+        }
+        
+        // Send the data to the API using fetch
+        fetch('/api/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                // If the response is not OK, show an error message
+                throw new Error('Login failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response data:', data); 
+            if (data) {
+                // Success - Redirect or perform any action after successful login
+                localStorage.setItem('auth', JSON.stringify({ token: data.token }));
+                console.log('Token stored in localStorage:', data.token);
+                window.location.href = '/courses';
+                
+                
+                
+            
+            } 
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('error-message').textContent = 'Invalid username or password.';
+            document.getElementById('error-message').classList.remove('d-none');
+        });
+       
+
+    });
+    
+    
+</script>
 
 {% endblock content %}
