@@ -4,36 +4,42 @@
 
 <section id="loginSec">
     <div class="container d-flex justify-content-center align-items-center mt-4 mb-4">
-        <form class="card shadow-lg w-100" style="max-width: 400px;">
+        <form id="signupForm" class="card shadow-lg w-100" style="max-width: 400px;">
             <div class="card-body">
                 <h2 class="text-center mb-4">Register</h2>
     
                 <!-- Full Name Field -->
                 <div class="mb-3">
                     <label for="fullName" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                    <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" >
                 </div>
     
                 <!-- Email Field -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" >
                 </div>
     
                 <!-- Password Field -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" >
                 </div>
     
                 <!-- Confirm Password Field -->
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" >
                 </div>
     
+                <!-- Error Message -->
+                <div id="error-message" class="alert alert-danger d-none"></div>
+    
+                <!-- Success Message -->
+                <div id="success-message" class="alert alert-success d-none"></div>
+    
                 <!-- Submit Button -->
-                <button id="signup-button" type="submit" class="btn w-100 px-4">Register</button>
+                <button id="signup-button" type="submit" class="btn btn-primary w-100 px-4">Register</button>
     
                 <div class="text-center mt-3">
                     <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
@@ -42,5 +48,90 @@
         </form>
     </div>
 </section>
-{% endblock content %}
 
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Get the form values
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Clear previous messages
+        document.getElementById('error-message').classList.add('d-none');
+        document.getElementById('success-message').classList.add('d-none');
+
+        // Check if full name is at least 3 characters
+        if (fullName.length < 3) {
+            document.getElementById('error-message').textContent = "Username must be at least 3 characters.";
+            document.getElementById('error-message').classList.remove('d-none');
+            return;
+        }
+
+
+        // Check if passwords match
+        if (password !== confirmPassword) {
+            document.getElementById('error-message').textContent = "Passwords do not match.";
+            document.getElementById('error-message').classList.remove('d-none');
+            return;
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('error-message').textContent = "Please enter a valid email address.";
+            document.getElementById('error-message').classList.remove('d-none');
+            return;
+        }
+
+        // Validate password strength (at least 6 characters, must contain a number and a capital letter)
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/; // This regex ensures: at least one uppercase letter, one digit, and minimum 6 characters
+    if (!passwordRegex.test(password)) {
+        document.getElementById('error-message').textContent = "Password must be at least 6 characters long, contain a number and a capital letter.";
+        document.getElementById('error-message').classList.remove('d-none');
+        return;
+    }
+        
+        
+
+        // Send the data to the API
+        fetch('/api/register/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: fullName, 
+                email: email,
+                password: password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                // Display error message
+                document.getElementById('error-message').textContent = data.error;
+                document.getElementById('error-message').classList.remove('d-none');
+                document.getElementById('success-message').classList.add('d-none');
+            } else {
+                // Display success message
+                document.getElementById('success-message').textContent = data.message;
+                document.getElementById('success-message').classList.remove('d-none');
+                document.getElementById('error-message').classList.add('d-none');
+
+                setTimeout(() => {
+                    window.location.href = "{% url 'login' %}"; // Redirect to login page
+                }, 1000); // Redirect after 1 second
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('error-message').textContent = 'An error occurred. Please try again.';
+            document.getElementById('error-message').classList.remove('d-none');
+        });
+    });
+</script>
+
+{% endblock content %}
